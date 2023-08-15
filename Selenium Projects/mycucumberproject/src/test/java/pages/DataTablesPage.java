@@ -1,5 +1,6 @@
 package pages;
 
 public class DataTablesPage {
-    // Locate all data table elements
+    // Locate all data table elements. HW
+
 }
