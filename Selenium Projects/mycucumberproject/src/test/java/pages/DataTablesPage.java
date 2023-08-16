@@ -28,5 +28,9 @@ public class DataTablesPage {
     public WebElement salary;
     @FindBy(xpath = "//button[.='Create']")
     public WebElement createButton;
+    @FindBy(xpath = "//input[@type='search']")
+    public WebElement searchBox;
+    @FindBy(xpath = "//td[@class='sorting_1']")
+    public WebElement nameField;
 
 }
