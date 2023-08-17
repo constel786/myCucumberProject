@@ -11,13 +11,13 @@ import org.junit.runner.RunWith;
                 "html:target/default-cucumber-reports.html",
                 "json:target/json-reports/cucumber.json",
                 "junit:target/xml-report/cucumber.xml",
-                "rerun:target/failedRerun.txt" //Returns empty if test PASSED
+                "rerun:target/failedRerun.txt" //to return failed report
         },
         monochrome = true, //makes reports more readable in the console
-        features = "./src/test/resources/features", //path of feature file
+        features = "@target/failedRerun.txt", //path of failedRerun.txt
         glue = "stepdefinitions", //path of the step definitions
-        tags = "@data_tables", //only runs this test case
+        //NO TAG
         dryRun = false //true option executes for only missing step definitions
 )
-public class Runner {
+public class FailedTestsRunner {
 }
