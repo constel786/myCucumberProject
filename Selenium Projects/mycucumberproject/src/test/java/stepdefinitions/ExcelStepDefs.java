@@ -15,8 +15,8 @@ public class ExcelStepDefs {
     @Given("user navigates to {string} and enters data from {string} from {string} excel")
     public void user_navigates_to_and_enters_data_from_from_excel(String url, String sheet, String excel) {
 //        String excelPath="./src/test/resources/test_data/data_sheet.xlsx";
-        String excelPath="./src/test/resources/test_data/"+excel+"";
-        excelUtils = new ExcelUtils(excelPath,sheet);
+        String excelPath="test_data/data_sheet.xlsx"+excel+"";
+        excelUtils = new ExcelUtils(excelPath, sheet);
         dataList = excelUtils.getDataList();
         System.out.println(dataList);
 //        dataList java object has teh excel data..
