@@ -1,12 +1,14 @@
 package utilities;
+
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.safari.SafariDriver;
+import org.openqa.selenium.support.ThreadGuard;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -14,50 +16,55 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.List;
 import java.util.NoSuchElementException;
+
 public class Driver {
-    //create a driver instance
-    private static WebDriver driver;
+
     private static int timeout = 5;
-    //What?=>It is just to create, initialize the driver instance.(Singleton driver)
-    //Why?=>We don't want to create and initialize the driver when we don't need
-    //We will create and initialize the driver when it is null
-    //We can use Driver class with different browser(chrome,firefox,headless)
-    private Driver() {
-        //we don't want to create another abject. Singleton pattern
-    }
-    //to initialize the driver we create a static method
+    //    creating private constructor
+    private Driver(){}
+    //    creating a thread safe variable. type of the variable is WebDriver.So every thread will have its own copy of the variable
+    private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+    //    getDriver method is used to access the class instance that is WebDriver.
+    //    This method will return a copy of the driverThreadLocal for each thread during parallel testing
     public static WebDriver getDriver() {
-        //create the driver if and only if it is null
-        if (driver == null) {
-            String browser = ConfigReader.getProperty("browser");
-            if ("chrome".equals(browser)) {
-                WebDriverManager.chromedriver().setup();
-                driver = new ChromeDriver();
-            } else if ("firefox".equals(browser)) {
-                WebDriverManager.firefoxdriver().setup();
-                driver = new FirefoxDriver();
-            } else if ("ie".equals(browser)) {
-                WebDriverManager.iedriver().setup();
-                driver = new InternetExplorerDriver();
-            } else if ("safari".equals(browser)) {
-                WebDriverManager.getInstance(SafariDriver.class).setup();
-                driver = new SafariDriver();
-            } else if ("chrome-headless".equals(browser)) {
-                WebDriverManager.chromedriver().setup();
-                driver = new ChromeDriver(new ChromeOptions().setHeadless(true));
-            }
+        if (driver.get() == null) {
+            initializeDriver();
         }
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.manage().window().maximize();
-        return driver;
+        return driver.get();
     }
+    //    Creating and instantiating the WebDriver instance
+    private static void initializeDriver() {
+        switch (ConfigReader.getProperty("browser")) {
+            case "chrome":
+                WebDriverManager.chromedriver().setup();
+                driver.set(ThreadGuard.protect(new ChromeDriver()));
+                break;
+            case "firefox":
+                WebDriverManager.firefoxdriver().setup();
+                driver.set(new FirefoxDriver());
+                break;
+            case "chrome-headless":
+                WebDriverManager.chromedriver().setup();
+                driver.set(ThreadGuard.protect(new ChromeDriver(new ChromeOptions().setHeadless(true))));
+                break;
+            case "edge":
+                WebDriverManager.edgedriver().setup();
+                driver.set(ThreadGuard.protect(new EdgeDriver()));
+                break;
+            case "safari":
+                WebDriverManager.safaridriver().setup();
+                driver.set(ThreadGuard.protect(new SafariDriver()));
+                break;
+        }
+        //driver -> getDriver()
+        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+        getDriver().manage().window().maximize();
+    }
+    //    if driver is pointing any object such as chrome or edge, then quit
     public static void closeDriver() {
-        if (driver != null) {//if the driver is pointing chrome
-            driver.quit();//quit the driver
-            driver = null;//set it back to null to make sure driver is null
-            // so I can initialize it again
-            //This is important especially you do cross browser testing(testing with
-            // multiple browser like chrome, firefox, ie etc.)
+        if (driver.get() != null) {
+            driver.get().quit();
+            driver.remove();
         }
     }
     public static void waitAndClick(WebElement element, int timeout) {

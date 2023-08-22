@@ -1,10 +1,10 @@
 package stepdefinitions;
-
 import io.cucumber.java.en.Given;
 import org.junit.Assert;
 import pages.DataTablesPage;
 import utilities.Driver;
 import utilities.ExcelUtils;
+import utilities.ExtentReportUtils;
 import java.util.List;
 import java.util.Map;
 import static utilities.WaitUtils.waitFor;
@@ -14,18 +14,21 @@ public class ExcelStepDefs {
     List<Map<String,String>> dataList;
     @Given("user navigates to {string} and enters data from {string} from {string} excel")
     public void user_navigates_to_and_enters_data_from_from_excel(String url, String sheet, String excel) {
-//      String excelPath="./src/test/resources/test_data/data_sheet.xlsx";
-        String excelPath="./test_data/data_sheet.xlsx"+excel+"";
-        excelUtils = new ExcelUtils(excelPath, sheet);
+//        String excelPath="./src/test/resources/test_data/data_sheet.xlsx";
+        String excelPath="./src/test/resources/test_data/"+excel+"";
+        excelUtils = new ExcelUtils(excelPath,sheet);
         dataList = excelUtils.getDataList();
         System.out.println(dataList);
-//        dataList java object has the excel data
+//        dataList java object has teh excel data..
         dataTablesPage = new DataTablesPage();
-//        We are testing with multiple data so use a loop
-        for (Map<String, String> data : dataList){
+//        we are testing with multiple data so use a loop
+        for (Map<String,String> data : dataList){
+            ExtentReportUtils.createTestReport("excel automation","smoke test");
             waitFor(2);
+            ExtentReportUtils.info("opening the url");
             Driver.getDriver().get(url);
             waitFor(2);
+            ExtentReportUtils.passAndCaptureScreenshot("clicking on new Button");
             dataTablesPage.newButton.click();
             waitFor(2);
             dataTablesPage.firstname.sendKeys(data.get("first_name"));
@@ -42,15 +45,15 @@ public class ExcelStepDefs {
             waitFor(2);
             dataTablesPage.salary.sendKeys(data.get("salary"));
             waitFor(2);
+            ExtentReportUtils.passAndCaptureScreenshot("filled out the user information");
             dataTablesPage.createButton.click();
             waitFor(2);
             dataTablesPage.searchBox.sendKeys(data.get("first_name"));
             waitFor(2);
             Assert.assertTrue(dataTablesPage.nameField.getText().contains(data.get("first_name")));
+            ExtentReportUtils.info("Test completed...");
+            ExtentReportUtils.flush();
             waitFor(2);
         }
     }
 }
-
-
-
