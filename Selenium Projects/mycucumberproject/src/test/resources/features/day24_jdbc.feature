@@ -18,6 +18,7 @@ Feature: jdbc_feature
 #      Verify if account table account types contains at least one
 #      CHECKING, CREDIT_CARD, SAVING, INVESTING options
 
+  @validate_account_type
   Scenario Outline: TC04_verify account types
     And user gets the column "*" from the table "tp_account"
     Then verify table "<table_name>" and column "<column_name>" contains following data "<data_name>"

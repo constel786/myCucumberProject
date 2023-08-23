@@ -2,9 +2,12 @@ package stepdefinitions;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import org.junit.Assert;
 import utilities.DBUtils;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class JDBCStepDefs {
     @Given("user connects to the application database")
@@ -33,5 +36,13 @@ public class JDBCStepDefs {
         }
 
         System.out.println("Row Count: " + DBUtils.getRowCount()); //To get the number of rows printed
+    
+    }
+    @Then("verify table {string} and column {string} contains following data {string}")
+    public void verifyTableAndColumnContainsFollowingData(String table, String column, String data) {
+        String query = "select " + column + " from " + table;
+        List<Object> columnList = DBUtils.getColumnData(query, column);
+        System.out.println("columnList = " + columnList);
+        Assert.assertTrue(columnList.contains(data));
     }
 }
