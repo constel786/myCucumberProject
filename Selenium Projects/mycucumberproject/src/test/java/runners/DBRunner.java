@@ -13,10 +13,10 @@ import org.junit.runner.RunWith;
                 "junit:target/xml-report/cucumber.xml",
                 "rerun:target/failedRerun.txt"
         },
-        monochrome = true,//makes reports more readable in the console
-        features = "./src/test/resources/features",//path of feature file
+        monochrome = true, //makes reports more readable in the console
+        features = "src/test/resources/features", //path of feature file
         glue = "stepdefinitions", //path of the step definitions
-        tags = "@jdbc",
+        tags = "@jdbc", //(options: @jdbc, @email_account, @user_account)
         dryRun = false //executes to generate missing step definitions
 )
 public class DBRunner {
