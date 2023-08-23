@@ -81,24 +81,24 @@ public class GridStepDefs {
 9. Complete the step definition
 ---------------------------------
 10. KEY POINTS:
-*What is selenium grid?
-    - grid is one of the selenium components. (others : Selenium IDE, Selenium WebDriver, Selenium RC)
+*What is Selenium Grid?
+    - Grid is one of the Selenium components. (others are: Selenium IDE, Selenium WebDriver, Selenium RC)
 *What is it used for?
-    -It is used to run test cases
-        1. on remote web driver
-        2. cross-browser testing (chrome, firefox, edge,...)
-        3. parallel testing. when a framework configured for parallel testing, then we can run tests in parallel mode with grid
-        4. different operating system such as IOS or Windows
-*Did you use grid?
-    -yes I used grid on my project for cross browser testing
-*How do yuu run test cases on grid?
-    -I have the selenium server and drivers. I run the selenium server in standalone mode. Then I can execute my test cases on the selenium grid
-    -In fact, in grid 4, we have different options to run tests on grid : 1. standalone 2. hub and node 3. distributed mode
-*What is HUB?
-    -Hub is the server that manages the nodes. we have only one Hub.
-*What is NODE?
-    -Note is the remote virtual machines. we can have multiple Node.
-*What is Desired Capabilities?
-    -Desired capabilities is used to add key value pairs. We use desired capabilities to add specific info.
-    -In selenium grid we can use desired capabilities to add customized information browser type(browser=chrome), browser version(version=114.43.1), operation system(OS=Windows 10)....
-    -Lately, Options is usually used instead of desired capabilities
+    -It is used to run test cases:
+        1. On a remote web driver
+        2. Cross-browser testing (chrome, firefox, edge, etc.)
+        3. Parallel testing. When a framework is configured for parallel testing, then we can run tests in parallel mode with grid
+        4. Different operating systems such as iOS or Windows
+*Did you use Grid?
+    -Yes, I used Grid on my project for cross-browser testing
+*How do you run test cases on Grid?
+    -I have the Selenium server and drivers. I run the Selenium server in standalone mode. Then I can execute my test cases on the Selenium Grid.
+    -In fact, in Grid 4, we have different options to run tests on Grid : 1. standalone 2. hub and node 3. distributed mode
+*What is a HUB?
+    -Hub is the server that manages the nodes. We have only one Hub.
+*What is a NODE?
+    -Node is the remote virtual machine. We can have multiple Nodes.
+*What are Desired Capabilities?
+    -Desired capabilities are used to add key value pairs. We use desired capabilities to add specific info.
+    -In Selenium Grid we can use Desired Capabilities to add customized information browser type (browser=chrome), browser version (version=114.43.1), operating system (OS=Windows 10), etc.
+    -Lately, Options is usually used instead of Desired Capabilities.

@@ -7,6 +7,8 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.safari.SafariOptions;
+
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
@@ -27,6 +29,10 @@ public class GridStepDefs {
             driver.manage().window().maximize();
         }else if (browser.equalsIgnoreCase("edge")){
             driver = new RemoteWebDriver(remoteURL, new EdgeOptions());
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+            driver.manage().window().maximize();
+        }else if (browser.equalsIgnoreCase("safari")){
+            driver = new RemoteWebDriver(remoteURL, new SafariOptions());
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
             driver.manage().window().maximize();
         }
