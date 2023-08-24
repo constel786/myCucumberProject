@@ -14,7 +14,7 @@ public class CommonStepDefs {
     }
     @And("close the application")
     public void closeTheApplication(){
-        WaitUtils.waitFor(1);
+        WaitUtils.waitFor(3);
         Driver.closeDriver();
     }
 }
