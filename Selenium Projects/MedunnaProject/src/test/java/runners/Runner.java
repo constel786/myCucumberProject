@@ -13,9 +13,9 @@ import org.junit.runner.RunWith;
                 "rerun:target/failedRerun.txt"
         },
         monochrome=false, //makes the report on console readable
-        features = "./src/test/resources/features",//path of feature file
-        glue = "stepdefinitions", //path of the step definitions
-        tags = "@e2e",//this marks which feature file or scenario to run.
+        features = "./src/test/resources/features", //path of feature file
+        glue = {"stepdefinitions", "hooks"}, //path of the step definitions
+        tags = "@e2e", //this marks which feature file or scenario to run.
         dryRun = false //dryRun is used to check if there is any MISSING JAVA CODE(STEP DEFINITIONS)
 
 )
