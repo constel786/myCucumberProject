@@ -14,7 +14,8 @@ public class ApiStepDefs {
     @Given("send get request to read room by id")
     public void send_get_request_to_read_room_by_id() {
 
-    spec.pathParams("first", "api", "second", "rooms", "third", roomId);response = given(spec).get("{first}/{second}/{third}");
+    spec.pathParams("first", "api", "second", "rooms", "third", roomId);
+    response = given(spec).get("{first}/{second}/{third}");
     response.prettyPrint();
 
     }
@@ -26,6 +27,11 @@ public class ApiStepDefs {
         String price = response.jsonPath().getString("price");
         String description = response.jsonPath().getString("description");
 
-        assertEquals();
+
+//        assertEquals(1234, roomNumber); //fake room number 1234
+//        assertEquals("DAYCARE", roomType);
+//        assertEquals("333.0", price);
+//        assertEquals("This room was created for cucumber practice e2e test", description);
+
     }
 }
