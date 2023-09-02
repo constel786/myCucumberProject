@@ -27,7 +27,6 @@ public class ApiStepDefs {
         String price = response.jsonPath().getString("price");
         String description = response.jsonPath().getString("description");
 
-
 //        assertEquals(1234, roomNumber); //fake room number 1234
 //        assertEquals("DAYCARE", roomType);
 //        assertEquals("333.0", price);
