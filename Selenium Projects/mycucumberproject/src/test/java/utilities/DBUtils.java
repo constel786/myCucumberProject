@@ -22,8 +22,8 @@ public class DBUtils {
      */
     public static void createConnection() {
         String url = "jdbc:postgresql://157.230.48.97:5432/gmibank_db";
-        String username="techprodb_user";
-        String password="Techpro_@126";
+        String username="techprodb_user"; //emplyee login: gino.wintheiser
+        String password="Techpro_@126"; //emplyee password: %B6B*q1!TH
         try {
             connection = DriverManager.getConnection(url, username, password);
         } catch (SQLException e) {
