@@ -17,7 +17,7 @@ import org.junit.runner.RunWith;
         monochrome = true, //makes reports more readable in the console
         features = "./src/test/resources/features", //path of feature file
         glue = {"stepdefinitions", "hooks"}, //path of the step definitions
-         tags = "@excel", //only runs this test case (also "@data_tables", "@failed_tests", "@google", "@excel")
+        tags = "@excel", //only runs this test case (also "@data_tables", "@failed_tests", "@google", "@excel")
         dryRun = false //true option executes for only missing step definitions
 )
 public class Runner {
