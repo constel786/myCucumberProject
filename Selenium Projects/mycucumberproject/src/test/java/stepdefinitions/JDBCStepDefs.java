@@ -25,7 +25,7 @@ public class JDBCStepDefs {
         DBUtils.getResultset().next(); //1st row
         Object object1 = DBUtils.getResultset().getObject(column); //returns the data on that 1st row
         System.out.println(object1.toString()); //printing that data
-        DBUtils.getResultset().next();//2nd row
+        DBUtils.getResultset().next(); //2nd row
         Object object2=DBUtils.getResultset().getObject(column);
         System.out.println(object2.toString());
         int rowCount = 2;

@@ -21,6 +21,7 @@ public class BlueRentalStepDefs {
     }
     @When("user click on the login button")
     public void user_click_on_the_login_button() {
+
         blueRentalLoginPage.loginButton.click();
     }
     @Then("verify the login is successful")
