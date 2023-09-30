@@ -40,8 +40,8 @@ public class JDBCStepDefs {
     }
     @Then("verify table {string} and column {string} contains following data {string}")
     public void verifyTableAndColumnContainsFollowingData(String table, String column, String data) {
-        String query = "select " + column + " from " + table;
-        List<Object> columnList = DBUtils.getColumnData(query, column);
+//        String query = "select " + column + " from " + table;
+//        List<Object> columnList = DBUtils.getColumnData(query, column);
         System.out.println("columnList = " + columnList);
         Assert.assertTrue(columnList.contains(data));
     }
