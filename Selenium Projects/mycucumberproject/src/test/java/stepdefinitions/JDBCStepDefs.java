@@ -42,7 +42,7 @@ public class JDBCStepDefs {
     public void verifyTableAndColumnContainsFollowingData(String table, String column, String data) {
         String query = "select " + column + " from " + table;
         List<Object> columnList = DBUtils.getColumnData(query, column);
-//        System.out.println("columnList = " + columnList);
+        System.out.println("columnList = " + columnList);
 //        Assert.assertTrue(columnList.contains(data));
     }
 }
